@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const ticketSchema = mongoose.Schema({
     number:{
-        type: Number,
+        type: String,
         required: true
     },
     status:{
