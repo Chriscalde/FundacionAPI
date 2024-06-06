@@ -28,4 +28,6 @@ app.use('/customer',customerRouter);
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on ${HOST} port ${PORT}`))
 
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
