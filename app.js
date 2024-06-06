@@ -4,7 +4,7 @@ const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 
 const ticketRouter = require('./routes/ticket.routes');
-
+const customerRouter = require('./routes/customer.routes');
 dotenv.config();
 connectDB();
 
@@ -20,5 +20,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use('/ticket',ticketRouter)
+//This are the routes used for the API
+app.use('/ticket',ticketRouter);
+app.use('/customer',customerRouter);
+
+
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on ${HOST} port ${PORT}`))

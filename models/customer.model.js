@@ -11,6 +11,10 @@ const customerSchema = mongoose.Schema({
         unique: true,
         dropDups: true
     },
+    imgURL:{
+        type: String,
+        required: true 
+    },
     verified: {
         type: Boolean,
         required: true,
