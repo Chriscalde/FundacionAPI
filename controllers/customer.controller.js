@@ -37,25 +37,23 @@ exports.createCustomer = async(req,res)=>{
     //     }
     // })
     newCustomer.save().then(function(tickets){
-        res.status(500).json({
+        res.status(200).json({
             success: true,
             data: tickets
         });
     }).catch(function(err){
-        res.status(200).send(err)
+        res.status(500).send(err)
     });
     
 }
 
 exports.getCustomers = async(req,res)=>{
-    Customer.find({},(err,customers)=>{
-        if(err){
-            res.status(500).send(err)
-        }else{
-            res.status(200).json({
-                success: true,
-                data: customers
-            })
-        }
+    Customer.find({}).then(function(tickets){
+        res.status(200).json({
+            success:true,
+            data: tickets
+        })
+    }).catch(function(e){
+        res.status(500).send(e)
     })
 }

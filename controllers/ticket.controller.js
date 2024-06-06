@@ -34,12 +34,12 @@ exports.getAllTickets = async(req,res)=>{
     //     }
     // })
     Ticket.find({}).then(function(tickets){
-        res.status(500).json({
+        res.status(200).json({
             success:true,
             data:tickets
             })
         }).catch(function(err){
-            res.status(200).send(err)
+            res.status(500).send(err)
     })
 }
 
@@ -49,9 +49,9 @@ exports.updateStatus = async(req,res)=>{
     tickets.forEach(id => {
         Ticket.findByIdAndUpdate(id,{"status":status}).then(function(tickets){
             console.log(`Ticket: ${id} Updated`)
-            res.status(500)
+            res.status(200)
         }).catch(function(err){
-            res.status(200).send(err)
+            res.status(500).send(err)
         })
     });
 }
