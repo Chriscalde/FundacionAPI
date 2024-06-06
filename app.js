@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
-
+const cors = require('cors')
 const ticketRouter = require('./routes/ticket.routes');
 const customerRouter = require('./routes/customer.routes');
 dotenv.config();
@@ -24,5 +24,6 @@ app.use(bodyParser.urlencoded({
 app.use('/ticket',ticketRouter);
 app.use('/customer',customerRouter);
 
+app.use(cors());
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on ${HOST} port ${PORT}`))
