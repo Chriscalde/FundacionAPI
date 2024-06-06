@@ -24,6 +24,8 @@ app.use(bodyParser.urlencoded({
 app.use('/ticket',ticketRouter);
 app.use('/customer',customerRouter);
 
-app.use(cors());
+
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on ${HOST} port ${PORT}`))
+
+app.use(cors());
