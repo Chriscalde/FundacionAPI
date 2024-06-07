@@ -16,26 +16,6 @@ exports.createCustomer = async(req,res)=>{
         tickets
     });
 
-    // newCustomer.save(async(err,savedCustomer)=>{
-    //     if(err){
-    //         res.status(500).send(err)
-    //     }else{
-    //         res.status(200).json({
-    //             success:true,
-    //             data:savedCustomer
-    //         })
-    //     }
-    // })
-    // newCustomer.save(function(err,data){
-    //     if(err){
-    //         res.status(200).send(err)
-    //     }else{
-    //         res.status(500).json({
-    //             success:true,
-    //             data:data
-    //         })
-    //     }
-    // })
     newCustomer.save().then(function(tickets){
         res.status(200).json({
             success: true,
