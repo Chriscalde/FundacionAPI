@@ -12,12 +12,12 @@ exports.createTickets = async(req,res)=>{
         }
         Ticket.insertMany(documents).then(function (docs) {
             console.log("Data inserted")
-            res.status(500).json({
+            res.status(200).json({
                 success:true,
                 data: docs
             }) // Success 
         }).catch(function(error) {
-            res.status(200).send(error)     // Failure 
+            res.status(500).send(error)     // Failure 
         }); 
 }
 
