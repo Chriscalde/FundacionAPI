@@ -4,7 +4,7 @@ const User = require('../models/usermodel');
 exports.createUser = async(req,res)=>{
     const username = req.body.username
     const name = req.body.name
-    const lastNamename = req.body.lastName
+    const lastName = req.body.lastName
     const mail = req.body.mail
     const phone = req.body.phone
     const password = req.body.password
