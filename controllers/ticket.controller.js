@@ -33,7 +33,7 @@ exports.getAllTickets = async(req,res)=>{
     //         console.log(tickets)
     //     }
     // })
-    Ticket.find({}).then(function(tickets){
+    Ticket.find({}).sort({number:1}).then(function(tickets){
         res.status(200).json({
             success:true,
             data:tickets
