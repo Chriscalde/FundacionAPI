@@ -39,7 +39,7 @@ exports.getCustomers = async(req,res)=>{
 }
 
 exports.getLastOrder = async(req,res)=>{
-    Customer.findOne().sort('-orderNo').select('orderNo').then(function(order){
+    Customer.findOne().sort({orderNumber:-1}).select('orderNumber').exec().then(function(order){
         res.status(200).json({
             success: true,
             data: order
