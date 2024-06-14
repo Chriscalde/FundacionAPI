@@ -4,7 +4,7 @@ exports.createCustomer = async(req,res)=>{
     const phone = req.body.phone
     const imgURL = req.body.imgURL
     const verified = req.body.verified
-    const orderNo = req.body.orderNo
+    const orderNumber = req.body.orderNo
     const tickets = req.body.tickets
 
     const newCustomer = new Customer({
@@ -12,7 +12,7 @@ exports.createCustomer = async(req,res)=>{
         phone,
         imgURL,
         verified,
-        orderNo,
+        orderNumber,
         tickets
     });
 
@@ -32,6 +32,17 @@ exports.getCustomers = async(req,res)=>{
         res.status(200).json({
             success:true,
             data: tickets
+        })
+    }).catch(function(e){
+        res.status(500).send(e)
+    })
+}
+
+exports.getLastOrder = async(req,res)=>{
+    Customer.findOne().sort('-orderNo').select('orderNo').then(function(order){
+        res.status(200).json({
+            success: true,
+            data: order
         })
     }).catch(function(e){
         res.status(500).send(e)
