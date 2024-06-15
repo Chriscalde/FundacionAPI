@@ -46,12 +46,21 @@ exports.getAllTickets = async(req,res)=>{
 exports.updateStatus = async(req,res)=>{
     const tickets = req.body.tickets
     const status = req.body.status
-    tickets.forEach(id => {
-        Ticket.findByIdAndUpdate(id,{"status":status}).then(function(tickets){
-            console.log(`Ticket: ${id} Updated`)
-            res.status(200)
-        }).catch(function(err){
-            res.status(500).send(err)
+    try {
+        const result = await Ticket.updateMany({_id:{$in:tickets}},{$set:{status:status}});
+        res.status(200).json({
+            success: true,
+            res: result,
+            data: tickets
         })
-    });
+    } catch(err) {
+        res.status(500).send(err)
+    }
+    // .then(function(tickets){
+    //     console.log(`Ticket: ${id} Updated`)
+        
+    // }).catch(function(err){
+    //     res.status(500).send(err)
+    // })
+    ;
 }
