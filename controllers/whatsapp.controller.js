@@ -8,8 +8,8 @@ const client = new twilio(accountSid,accountToken);
 exports.sendMessage = (to,message)=>{
     client.messages.create({
         body: message,
-        from : 'whatsapp:+14155238886',
-        to: `whatsapp:+1${to}`
+        from : 'whatsapp:+18554371674',
+        to: `whatsapp:+52${to}`
     }).then(message=> console.log(message.sid))
     .catch(error=>console.log(error));
 }
