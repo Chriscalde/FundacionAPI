@@ -4,15 +4,16 @@ const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 const cors = require('cors')
 
+
+//This is the configuration used to connect to the DB
+dotenv.config();
+connectDB();
+
 //These are the routes imported for the API
 const ticketRouter = require('./routes/ticket.routes');
 const customerRouter = require('./routes/customer.routes');
 const userRouter = require('./routes/user.routes');
 const publicRouter = require('./routes/public.routes');
-//This is the configuration used to connect to the DB
-dotenv.config();
-connectDB();
-
 
 const HOST = process.env.HOST || '0.0.0.0'
 const CORS_PORT = 8081

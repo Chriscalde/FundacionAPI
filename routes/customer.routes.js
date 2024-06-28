@@ -7,4 +7,5 @@ router.get('/getCustomers',controller.getCustomers);
 router.get('/getLastOrder',controller.getLastOrder);
 router.get('/get/:id',controller.getCustomer);
 router.put('/updateInfo/:id',controller.updateCustomer);
+router.delete('/deleteCustomer/:id',controller.deleteCustomer);
 module.exports = router;

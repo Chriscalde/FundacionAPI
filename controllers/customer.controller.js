@@ -1,4 +1,5 @@
 const Customer = require('../models/customer.model.js');
+const Ticket = require('../models/ticket.model.js');
 const whatsappMessage = require('../controllers/whatsapp.controller.js');
 exports.createCustomer = async(req,res)=>{
     const name = req.body.name
@@ -80,4 +81,28 @@ exports.updateCustomer = async(req,res) => {
         .catch(function(e){
             res.status(500).send(e)
         })
+}
+exports.deleteCustomer = async(req,res) => {
+    const customerId = req.params.id
+    try {
+        const customer = await Customer.findById(customerId)
+        if (!customer) {
+            return res.status(404).json({ success: false, message: 'Customer not found' });
+        }
+        // Obtener los IDs de los tickets del cliente
+        const ticketIds = customer.tickets;
+
+        // Eliminar el cliente
+        await Customer.findByIdAndDelete(customerId);
+
+        // Actualizar los tickets relacionados
+        await Ticket.updateMany(
+            { _id: { $in: ticketIds } },
+            { $set: { status: 'available' } }
+        );
+        res.status(200).json({ success: true, message: 'Customer deleted successfully' });
+    } catch(e) {
+        res.status(500).send(e)
+    }
+    
 }
